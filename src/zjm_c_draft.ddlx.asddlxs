@@ -1,0 +1,71 @@
+@Metadata.layer: #CUSTOMER
+
+@UI: {
+   headerInfo: {
+     typeName: 'Flight Travel',
+     typeNamePlural: 'Flight Travels',
+     title:          { value: 'Description'},
+     description:    { value: 'Description' }
+               }
+     }
+annotate entity Zjm_C_Draft
+    with 
+{
+
+@UI.facet: [ { id:            'Travel',
+                   purpose:       #STANDARD,
+                   type:          #IDENTIFICATION_REFERENCE,
+                   label:      'Travel',
+                   position:      10 } ]
+
+
+@UI: {
+         lineItem:       [ { position: 10, importance: #HIGH } ],
+         identification: [ { position: 10, importance: #HIGH } ]
+       }
+@Consumption.valueHelpDefinition: [{ entity: { name:   'ZJM_I_AGENCY_VH', element: 'AgencyID'}  }]
+       
+    AgencyId;
+    @UI: {
+         lineItem:       [ { position: 20, importance: #HIGH } ],
+         identification: [ { position: 20, importance: #HIGH } ]
+       }
+    TravelId;
+    @UI: {
+         lineItem:       [ { position: 30, importance: #HIGH } ],
+         identification: [ { position: 30, importance: #HIGH } ]
+       }
+    Description;
+    @UI: {
+         lineItem:       [ { position: 40, importance: #HIGH } ],
+         identification: [ { position: 40, importance: #HIGH } ]
+       }
+       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZJM_I_CUSTOMER_VH', element:'CustomerID' } }]
+    CustomerId;
+    @UI: {
+         lineItem:       [ { position: 50, importance: #HIGH } ],
+         identification: [ { position: 50, importance: #HIGH } ]
+       }
+    StartDate;
+    @UI: {
+         lineItem:       [ { position: 60, importance: #HIGH } ],
+         identification: [ { position: 60, importance: #HIGH } ]
+       }
+    EndDate;
+    @UI: {
+         lineItem:       [ { position: 70, importance: #HIGH } ],
+         identification: [ { position: 70, importance: #HIGH } ]
+       }
+    Status;
+    @UI.hidden:true
+    CreatedAt;
+    @UI.hidden:true
+    CreatedBy;
+    @UI.hidden:true
+    ChangedAt;
+    @UI.hidden:true
+    ChangedBy;
+    @UI.hidden:true
+    LocChangedAt;
+    
+}

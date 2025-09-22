@@ -1,0 +1,4 @@
+@EndUserText.label: 'RAP Draft'
+define service ZJM_RAP_DRAFT {
+  expose Zjm_C_Draft;
+}

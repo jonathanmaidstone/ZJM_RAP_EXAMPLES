@@ -1,0 +1,46 @@
+managed implementation in class zbp_jm_r_draft unique;
+strict ( 2 );
+with draft;
+
+define behavior for Zjm_R_Draft //alias <alias_name>
+persistent table zjm_draft_test
+draft table zjm_draft_test_d
+lock master
+total etag ChangedAt
+authorization master ( instance )
+etag master LocChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly:update, mandatory:create ) AgencyId, TravelId;
+  field (readonly) Status ;
+  field (features:instance) StartDate, EndDate;
+
+  validation validateStartDate on save{ create; field StartDate;}
+  validation validateInterval on save{create; field StartDate, Enddate;}
+
+  determination determineStatus on save{ create; }
+
+draft action Edit;
+draft action Discard;
+draft action Resume;
+draft action Activate optimized;
+draft determine action Prepare {
+validation validateStartDate;
+validation validateInterval;
+}
+
+  mapping for zjm_draft_test corresponding {
+  AgencyId = agency_id;
+  TravelId = travel_id;
+  CustomerId = customer_id;
+  StartDate = start_date;
+  EndDate = end_date;
+  CreatedAt = created_at;
+  CreatedBy = created_by;
+  ChangedAt = changed_at;
+  ChangedBy = changed_by;
+  LocChangedAt = loc_changed_at;
+  }
+}
